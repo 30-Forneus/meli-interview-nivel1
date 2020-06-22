@@ -3,6 +3,7 @@ package com.meli.api.dna;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
+import lombok.Generated;
 import lombok.NonNull;
 
 public enum Scanner {
@@ -42,10 +43,6 @@ public enum Scanner {
 		return trasposed;
 	}
 	
-	String[] transposed(@NonNull String[] matrix) {
-		return asStringArray(transposed(asByteMatrix(matrix)));
-	}		
-
 	byte[][] mirrored(byte[][] matrix) {
 		final int noCols = matrix[0].length;
 		final int noRows = matrix.length;
@@ -80,15 +77,23 @@ public enum Scanner {
 	 
 		return diagonals;
 	}
-
+	
+	@Generated
+	String[] transposed(@NonNull String[] matrix) {
+		return asStringArray(transposed(asByteMatrix(matrix)));
+	}
+	
+	@Generated
 	String[] diagonal(@NonNull String[] matrix) {
 		return asStringArray(diagonal(asByteMatrix(matrix)));
-	}		
-
+	}	
+	
+	@Generated
 	String[] diagonalOfMirrored(@NonNull String[] matrix) {
 		return asStringArray(diagonal(mirrored(asByteMatrix(matrix))));
 	}
 
+	@Generated
 	void print(byte[][] matrix) {
 		for (int i = 0; i < matrix.length; i++) {
 //			System.out.println(new String (matrix[i]));
@@ -102,6 +107,7 @@ public enum Scanner {
 		System.out.println();
 	}
 
+	@Generated
 	void print(String[] sequence) {
 		this.print(asByteMatrix(sequence));
 	}
