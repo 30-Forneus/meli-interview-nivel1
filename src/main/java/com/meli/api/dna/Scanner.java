@@ -6,7 +6,7 @@ import static java.lang.Math.min;
 import lombok.Generated;
 import lombok.NonNull;
 
-public enum Scanner {
+enum Scanner {
 	
 	INSTANCE;
 

@@ -1,6 +1,6 @@
 package com.meli.api.dna;
 
-public enum DNAMutantSequences {
+enum DNAMutantSequences {
 	CCCC, GGGG, AAAA, TTTT;
 	
 	static final int SIZE = 4;

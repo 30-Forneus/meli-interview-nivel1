@@ -1,6 +1,8 @@
 package com.meli.api.dna;
 
-public enum Validator {
+import static com.meli.api.dna.DNAMutantSequences.valuesAsString;
+
+enum Validator {
 	INSTANCE;
 
 //	boolean containsAny(String[] targetDNA) {	
@@ -19,6 +21,15 @@ public enum Validator {
 			}
 		}
 		return false;
+	}
+
+	public boolean validate(DNASequence dnaSequence) {
+		final Scanner scanner = Scanner.INSTANCE;
+		String[] dna = dnaSequence.getDna();
+		return containsAny(dna, valuesAsString())
+				|| containsAny(scanner.transposed(dna), valuesAsString())
+				|| containsAny(scanner.diagonal(dna), valuesAsString())
+				|| containsAny(scanner.diagonalOfMirrored(dna), valuesAsString());
 	}
 
 }
