@@ -12,7 +12,7 @@
 	<artifactId>nivel1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>nivel1</name>
-	<description>Demo project for Spring Boot</description>
+	<description>MeLi interview level 1</description>
 
 	<properties>
 		<java.version>11</java.version>
