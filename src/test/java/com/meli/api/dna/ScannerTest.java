@@ -28,29 +28,18 @@ class ScannerTest {
 		assertNotNull(stringified, "No puede ser nulo");
 		assertEquals(sample1.length, stringified.length, "No tienen el mismo tamaño");
 		assertEquals(sample1[row], stringified[row], "Los strings representados no son iguales");
-
 	}
 
 	@Test
 	void testAsByteMatrix() {
 		final int row1 = new Random().nextInt(sample1.length);
-		final int row2 = new Random().nextInt(sample2.length);
 		System.out.println("row1: " + row1);
-		System.out.println("row2: " + row2);
-
 		assertNotNull(matrix1, "No puede ser nula");
 		assertEquals(sample1.length, matrix1.length, "No tienen el mismo tamaño");
 		assertEquals(sample1[0], new String(matrix1[0]), "Los strings representados no son iguales");
 		assertTrue(sample1[row1].getBytes()[0] == matrix1[row1][0] , "Los elementos de la fila no corresponden al original");
 		assertTrue(sample1[row1].getBytes()[1] == matrix1[row1][1] , "Los elementos de la fila no corresponden al original");
 		assertTrue(sample1[row1].getBytes()[2] == matrix1[row1][2] , "Los elementos de la fila no corresponden al original");
-
-		assertNotNull(matrix2, "No puede ser nula");
-		assertEquals(sample2.length, matrix2.length, "No tienen el mismo tamaño");
-		assertEquals(sample2[0], new String(matrix2[0]), "Los strings representados no son iguales");
-		assertTrue(sample2[row2].getBytes()[1] == matrix2[row2][1] , "Los elementos de la fila no corresponden al original");
-		assertTrue(sample2[row2].getBytes()[3] == matrix2[row2][3] , "Los elementos de la fila no corresponden al original");
-		assertTrue(sample2[row2].getBytes()[5] == matrix2[row2][5] , "Los elementos de la fila no corresponden al original");
 	}
 
 	@Test
@@ -79,5 +68,4 @@ class ScannerTest {
 		assertTrue(sample3[row].getBytes()[1] == diagonal[row][1] , "Los elementos de la fila no corresponden al original");
 		assertTrue(sample3[row].getBytes()[2] == diagonal[row][0] , "Los elementos de la fila no corresponden al original");
 	}
-
 }
