@@ -14,7 +14,7 @@ class ScannerTest {
 	private String[] sample3 = { "A", "B1", "C2D", "3EG", "FH4", "I57", "68", "9" };
 	private byte[][] matrix1;
 	private byte[][] matrix2;
-	
+
 	@BeforeEach
 	void setUp() throws Exception {//
 		matrix1 = Scanner.INSTANCE.asByteMatrix(sample1);
