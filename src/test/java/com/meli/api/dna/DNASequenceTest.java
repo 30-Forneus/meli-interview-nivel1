@@ -5,15 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 class DNASequenceTest {
 
-	private static final String FAKE_ID = "#FAKE_ID#";
 	private static final String RESOURCE_PATH = "src/test/resources/meliMatriz-%s_07x07.json";
 
 	private static final String HAS = "HAS";
@@ -22,11 +24,11 @@ class DNASequenceTest {
 	private static final String HAS_VERTICAL = "HAS_VERTICAL";
 	private static final String INV_DIAGONAL = "INV_DIAGONAL";
 
-	private static JSONObject has;
-	private static JSONObject doesNotHave;
-	private static JSONObject hasDiagonal;
-	private static JSONObject hasVertical;
-	private static JSONObject hasInvertedDiagonal;
+	private static DNASequence has;
+	private static DNASequence doesNotHave;
+	private static DNASequence hasDiagonal;
+	private static DNASequence hasVertical;
+	private static DNASequence hasInvertedDiagonal;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -37,22 +39,24 @@ class DNASequenceTest {
 		hasInvertedDiagonal = loadJson(INV_DIAGONAL);
 	}
 
-	private static JSONObject loadJson(String type) throws Exception {
-		final FileReader in = new FileReader(format(RESOURCE_PATH, type));
-		return (JSONObject) (new JSONParser().parse(in));
+	private static DNASequence loadJson(final String type) throws Exception {
+		final byte[] jsonFromFile = Files.readAllBytes(Paths.get(format(RESOURCE_PATH, type)));
+		ObjectMapper objectMapper = new ObjectMapper();
+		final DNASequence dnaObject = objectMapper.readValue(jsonFromFile, DNASequence.class);
+		return dnaObject;
 	}
 
 	@Test
 	void testIsMutant() {
-		assertTrue(DNASequence.of(FAKE_ID, has).isMutant());
-		assertTrue(DNASequence.of(FAKE_ID, hasVertical).isMutant());
-		assertTrue(DNASequence.of(FAKE_ID, hasDiagonal).isMutant());
-		assertTrue(DNASequence.of(FAKE_ID, hasInvertedDiagonal).isMutant());
+		assertTrue(has.isMutant());
+		assertTrue(hasVertical.isMutant());
+		assertTrue(hasDiagonal.isMutant());
+		assertTrue(hasInvertedDiagonal.isMutant());
 	}
 
 	@Test
 	void testIsNotMutant() {
-		assertFalse(DNASequence.of(FAKE_ID, doesNotHave).isMutant());
+		assertFalse(doesNotHave.isMutant());
 	}
 
 }
