@@ -10,7 +10,7 @@ enum Scanner {
 	
 	INSTANCE;
 
-	String[] asStringArray(byte[][] matrix) {	
+	String[] asStringArray(final byte[][] matrix) {	
 		final int noRows = matrix.length;
 		String[] strArray = new String[noRows];
 		for (int r = 0; r < noRows; r++) {
@@ -19,7 +19,7 @@ enum Scanner {
 		return strArray;
 	}
 
-	byte[][] asByteMatrix(String[] strArray) {
+	byte[][] asByteMatrix(final String[] strArray) {
 		final int noCols = strArray[0].length();
 		final int noRows = strArray.length;
 		byte[][] matrix = new byte[noRows][noCols];
@@ -29,7 +29,7 @@ enum Scanner {
 		return matrix;
 	}
 	
-	byte[][] transposed(byte[][] matrix) {		
+	byte[][] transposed(final byte[][] matrix) {		
 		final int noCols = matrix[0].length;
 		final int noRows = matrix.length;
 		byte[][] trasposed = new byte[noCols][noRows];
@@ -43,7 +43,7 @@ enum Scanner {
 		return trasposed;
 	}
 	
-	byte[][] mirrored(byte[][] matrix) {
+	byte[][] mirrored(final byte[][] matrix) {
 		final int noCols = matrix[0].length;
 		final int noRows = matrix.length;
 		byte[][] mirrored = new byte[noRows][noCols];
@@ -57,7 +57,7 @@ enum Scanner {
 		return mirrored;
 	}
 		
-	byte[][] diagonal(byte[][] matrix) {
+	byte[][] diagonal(final byte[][] matrix) {
 		final int noCols = matrix[0].length;
 		final int noRows = matrix.length;
 		final int lenDia = min(noCols, noRows);
@@ -79,22 +79,22 @@ enum Scanner {
 	}
 	
 	@Generated
-	String[] transposed(@NonNull String[] matrix) {
+	String[] transposed(@NonNull final String[] matrix) {
 		return asStringArray(transposed(asByteMatrix(matrix)));
 	}
 	
 	@Generated
-	String[] diagonal(@NonNull String[] matrix) {
+	String[] diagonal(@NonNull final String[] matrix) {
 		return asStringArray(diagonal(asByteMatrix(matrix)));
 	}	
 	
 	@Generated
-	String[] diagonalOfMirrored(@NonNull String[] matrix) {
+	String[] diagonalOfMirrored(@NonNull final String[] matrix) {
 		return asStringArray(diagonal(mirrored(asByteMatrix(matrix))));
 	}
 
 	@Generated
-	void print(byte[][] matrix) {
+	void print(final byte[][] matrix) {
 		for (int i = 0; i < matrix.length; i++) {
 //			System.out.println(new String (matrix[i]));
 			System.out.print(matrix[i][0]);
@@ -108,7 +108,7 @@ enum Scanner {
 	}
 
 	@Generated
-	void print(String[] sequence) {
+	void print(final String[] sequence) {
 		this.print(asByteMatrix(sequence));
 	}
 }
